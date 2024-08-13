@@ -1,3 +1,4 @@
+#include "shims.h"
 #ifdef IN_SANDY2X
 
 #include "private/asm_cet.h"

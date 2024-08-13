@@ -1,3 +1,4 @@
+#include "shims.h"
 #ifdef HAVE_AMD64_ASM
 
 #include "private/asm_cet.h"

@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #ifdef HAVE_AVX_ASM
 
