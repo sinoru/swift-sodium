@@ -55,6 +55,9 @@ let package = Package(
             name: "Sodium",
             targets: ["Sodium"]),
         .library(
+            name: "SodiumFoundationCompat",
+            targets: ["SodiumFoundationCompat"]),
+        .library(
             name: "Clibsodium",
             targets: ["Clibsodium"]),
     ],
@@ -63,6 +66,11 @@ let package = Package(
             name: "Sodium",
             dependencies: [
                 "Clibsodium",
+            ]),
+        .target(
+            name: "SodiumFoundationCompat",
+            dependencies: [
+                "Sodium",
             ]),
         .target(
             name: "Clibsodium",
