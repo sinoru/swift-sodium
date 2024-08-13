@@ -17,7 +17,6 @@ on:
 jobs:
   swift-test:
     strategy:
-      fail-fast: true
       matrix:
         operating-system: ["macos-13", "macos-14", "ubuntu-20.04", "ubuntu-22.04", "ubuntu-24.04"]
         swift-version: ["5.10.1"]
