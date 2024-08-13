@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_core_hsalsa20.h"
 #include "crypto_stream_salsa20.h"
 #include "crypto_stream_xsalsa20.h"

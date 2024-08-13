@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include <string.h>
 

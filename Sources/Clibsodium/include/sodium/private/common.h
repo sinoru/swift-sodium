@@ -1,8 +1,6 @@
 #ifndef common_H
 #define common_H 1
 
-#include "shims.h"
-
 #if !defined(_MSC_VER) && !defined(DEV_MODE) && 0
 # warning *** This is unstable, untested, development code.
 # warning It might not compile. It might not work as expected.

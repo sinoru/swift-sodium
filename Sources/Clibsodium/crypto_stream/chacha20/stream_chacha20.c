@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_stream_chacha20.h"
 #include "core.h"
 #include "private/chacha20_ietf_ext.h"

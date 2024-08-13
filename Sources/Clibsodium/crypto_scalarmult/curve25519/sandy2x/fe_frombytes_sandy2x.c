@@ -1,3 +1,4 @@
+#include "shims.h"
 /*
    This file is basically ref10/fe_frombytes.h.
 */

@@ -1,3 +1,4 @@
+#include "shims.h"
 /*
    BLAKE2 reference source code package - C implementations
 

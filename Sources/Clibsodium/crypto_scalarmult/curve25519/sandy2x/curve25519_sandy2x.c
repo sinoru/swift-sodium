@@ -1,3 +1,4 @@
+#include "shims.h"
 /*
    This file is adapted from ref10/scalarmult.c:
    The code for Mongomery ladder is replace by the ladder assembly function;

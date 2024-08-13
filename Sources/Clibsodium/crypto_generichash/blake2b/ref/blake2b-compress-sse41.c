@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #define BLAKE2_USE_SSSE3
 #define BLAKE2_USE_SSE41

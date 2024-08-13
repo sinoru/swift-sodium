@@ -1,3 +1,4 @@
+#include "shims.h"
 #include <errno.h>
 
 #include "crypto_kdf_blake2b.h"

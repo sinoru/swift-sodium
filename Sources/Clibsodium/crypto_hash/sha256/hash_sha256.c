@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_hash_sha256.h"
 
 size_t

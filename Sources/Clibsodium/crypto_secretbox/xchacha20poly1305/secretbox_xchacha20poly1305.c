@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include <assert.h>
 #include <limits.h>

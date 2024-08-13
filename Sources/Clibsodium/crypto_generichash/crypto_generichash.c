@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include "crypto_generichash.h"
 #include "randombytes.h"

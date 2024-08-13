@@ -1,3 +1,4 @@
+#include "shims.h"
 /*
  * Argon2 source code package
  *

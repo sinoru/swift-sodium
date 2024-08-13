@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include "crypto_stream.h"
 #include "randombytes.h"

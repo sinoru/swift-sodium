@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "argon2-encoding.h"
 #include "argon2-core.h"
 #include "utils.h"

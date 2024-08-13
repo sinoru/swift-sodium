@@ -1,3 +1,4 @@
+#include "shims.h"
 
 /*
  chacha-merged.c version 20080118

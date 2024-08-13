@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_generichash_blake2b.h"
 #include "randombytes.h"
 

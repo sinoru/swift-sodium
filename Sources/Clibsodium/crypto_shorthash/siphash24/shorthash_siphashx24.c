@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_shorthash_siphash24.h"
 
 size_t

@@ -1,3 +1,4 @@
+#include "shims.h"
 /*
    This file is adapted from amd64-51/fe25519_invert.c:
    Loops of squares are replaced by nsquares for better performance.

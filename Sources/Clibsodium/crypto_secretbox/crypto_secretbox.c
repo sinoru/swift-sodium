@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include "crypto_secretbox.h"
 #include "randombytes.h"

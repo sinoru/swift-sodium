@@ -1,3 +1,4 @@
+#include "shims.h"
 /*-
  * Copyright 2009 Colin Percival
  * Copyright 2012,2013 Alexander Peslyak

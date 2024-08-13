@@ -1,3 +1,4 @@
+#include "shims.h"
 /*-
  * Copyright 2013 Alexander Peslyak
  * All rights reserved.

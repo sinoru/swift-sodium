@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include "poly1305_donna.h"
 #include "crypto_verify_16.h"

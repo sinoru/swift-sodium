@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_onetimeauth_poly1305.h"
 #include "crypto_secretbox_xsalsa20poly1305.h"
 #include "crypto_stream_xsalsa20.h"

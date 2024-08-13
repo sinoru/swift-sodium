@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_shorthash_siphash24.h"
 #include "private/common.h"
 #include "shorthash_siphash_ref.h"

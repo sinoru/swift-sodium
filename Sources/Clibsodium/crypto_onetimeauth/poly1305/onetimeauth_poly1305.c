@@ -1,3 +1,4 @@
+#include "shims.h"
 
 #include "onetimeauth_poly1305.h"
 #include "crypto_onetimeauth_poly1305.h"

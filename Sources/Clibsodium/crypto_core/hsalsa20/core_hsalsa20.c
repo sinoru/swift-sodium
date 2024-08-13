@@ -1,3 +1,4 @@
+#include "shims.h"
 #include "crypto_core_hsalsa20.h"
 
 size_t
