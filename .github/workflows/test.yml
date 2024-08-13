@@ -7,12 +7,14 @@ on:
       - '**/*.swift'
       - 'Sources/Clibsodium/**/*.c'
       - 'Sources/Clibsodium/**/*.h'
+      - 'Sources/Clibsodium/**/*.S'
   pull_request:
     paths:
       - '.github/workflows/test.yml'
       - '**/*.swift'
       - 'Sources/Clibsodium/**/*.c'
       - 'Sources/Clibsodium/**/*.h'
+      - 'Sources/Clibsodium/**/*.S'
 
 jobs:
   swift-test:
