@@ -60,7 +60,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Sodium"),
+            name: "Sodium",
+            dependencies: [
+                "Clibsodium",
+            ]),
         .target(
             name: "Clibsodium",
             cSettings: [
