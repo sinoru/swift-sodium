@@ -6,7 +6,7 @@
 //
 
 extension Sodium {
-    public protocol Cipher {
+    public protocol Cipher: Sendable {
 
     }
 
