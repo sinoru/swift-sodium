@@ -10,6 +10,6 @@ public protocol SecretBoxCipher: Sodium.AEADCipher {
     static var secretBoxNonceSize: Int { get }
     static var secretBoxMACSize: Int { get }
 
-    static func _encrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
-    static func _decrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
+    static func secretBoxEncrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
+    static func secretBoxDecrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
 }

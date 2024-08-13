@@ -36,13 +36,13 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         _ data: some Sodium.Data,
         nonce: some Sodium.Data
     ) throws -> [UInt8] {
-        try Cipher._encrypt(.init(data), key: key.keyData, nonce: .init(nonce))
+        try Cipher.secretBoxEncrypt(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 
     public func decrypt(
         _ data: some Sodium.Data,
         nonce: some Sodium.Data
     ) throws -> [UInt8] {
-        try Cipher._decrypt(.init(data), key: key.keyData, nonce: .init(nonce))
+        try Cipher.secretBoxDecrypt(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 }

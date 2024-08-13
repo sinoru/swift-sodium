@@ -20,7 +20,7 @@ extension XSalsa20Poly1305: SecretBoxCipher {
         Int(crypto_secretbox_xsalsa20poly1305_MACBYTES)
     }
 
-    public static func _encrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
+    public static func secretBoxEncrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
         let estimatedCount = secretBoxMACSize + data.count
 
         let encryptedData = try Array<UInt8>(
@@ -44,7 +44,7 @@ extension XSalsa20Poly1305: SecretBoxCipher {
         return Array(encryptedData)
     }
 
-    public static func _decrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
+    public static func secretBoxDecrypt(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
         let estimatedCount = data.count - secretBoxMACSize
 
         let decryptedData = try Array<UInt8>(
