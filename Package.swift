@@ -58,8 +58,14 @@ let package = Package(
             name: "SodiumFoundationCompat",
             targets: ["SodiumFoundationCompat"]),
         .library(
+            name: "SodiumNIOCompat",
+            targets: ["SodiumNIOCompat"]),
+        .library(
             name: "Clibsodium",
             targets: ["Clibsodium"]),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-nio", from: "2.0.0"),
     ],
     targets: [
         .target(
@@ -71,6 +77,12 @@ let package = Package(
             name: "SodiumFoundationCompat",
             dependencies: [
                 "Sodium",
+            ]),
+        .target(
+            name: "SodiumNIOCompat",
+            dependencies: [
+                "Sodium",
+                .product(name: "NIOCore", package: "swift-nio")
             ]),
         .target(
             name: "Clibsodium",
