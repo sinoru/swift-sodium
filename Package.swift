@@ -87,7 +87,8 @@ let package = Package(
         .target(
             name: "Clibsodium",
             cSettings: [
-                .headerSearchPath("include/sodium")
+                .headerSearchPath("."),
+                .headerSearchPath("include/sodium"),
             ] + commonLibSodiumDefines + platformSpecificLibSodiumDefines),
         .testTarget(
             name: "SodiumTests",
