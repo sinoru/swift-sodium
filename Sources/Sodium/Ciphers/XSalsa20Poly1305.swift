@@ -6,7 +6,7 @@
 //
 
 public struct XSalsa20Poly1305: Sodium.AEADCipher {
-    public var _storage: [ObjectIdentifier : Any] = [:]
+    public var _storage: [ObjectIdentifier: Any] = [:]
 
     public init() { }
 }

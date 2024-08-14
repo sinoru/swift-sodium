@@ -12,8 +12,9 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         Cipher.secretBoxNonceSize
     }
 
-    let cipher = Cipher()
     public let key: Sodium.SymmetricKey
+
+    var cipher = Cipher()
 
     public init(
         key: Sodium.SymmetricKey = Sodium.SymmetricKey(
