@@ -6,12 +6,23 @@
 //
 
 extension Sodium {
-    public protocol Cipher: Sendable {
+    public protocol Cipher {
+        var _storage: [ObjectIdentifier: Any] { get set }
 
         init()
     }
 
     public protocol AEADCipher: Cipher {
 
+    }
+}
+
+extension Sodium.Cipher {
+    internal func value<T>(for type: T.Type) -> T {
+        _storage[ObjectIdentifier(type)] as! T
+    }
+
+    internal mutating func setValue<T>(_ value: T, for type: T.Type = T.self) {
+        _storage[ObjectIdentifier(type)] = value
     }
 }
