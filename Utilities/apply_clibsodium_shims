@@ -1,0 +1,9 @@
+#!/bin/bash
+
+find . -type f -name "*.c" -exec sed -i '' -e '1 i\
+#include "shims.h"
+' {} \;
+
+find . -type f -name "*.S" -exec sed -i '' -e '1 i\
+#include "shims.h"
+' {} \;
