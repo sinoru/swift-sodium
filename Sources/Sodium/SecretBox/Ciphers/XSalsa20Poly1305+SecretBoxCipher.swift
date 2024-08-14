@@ -31,7 +31,7 @@ extension XSalsa20Poly1305: SecretBoxCipher {
     public func secretBoxSeal(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
         let estimatedCount = Self.secretBoxMACSize.byteCount + data.count
 
-        let encryptedData = try Array<UInt8>(
+        return try Array<UInt8>(
             unsafeUninitializedCapacity: estimatedCount
         ) { buffer, initializedCount in
             let result = crypto_secretbox_easy(
@@ -48,14 +48,12 @@ extension XSalsa20Poly1305: SecretBoxCipher {
 
             initializedCount = estimatedCount
         }
-
-        return Array(encryptedData)
     }
 
     public func secretBoxOpen(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
         let estimatedCount = data.count - Self.secretBoxMACSize.byteCount
 
-        let decryptedData = try Array<UInt8>(
+        return try Array<UInt8>(
             unsafeUninitializedCapacity: estimatedCount
         ) { buffer, initializedCount in
             let result = crypto_secretbox_open_easy(
@@ -72,7 +70,5 @@ extension XSalsa20Poly1305: SecretBoxCipher {
 
             initializedCount = estimatedCount
         }
-
-        return Array(decryptedData)
     }
 }

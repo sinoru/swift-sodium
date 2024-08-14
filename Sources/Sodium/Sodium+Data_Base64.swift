@@ -27,21 +27,22 @@ extension Sodium.Data {
         }
 
         let underestimatedCount = base64String.count / 4 * 3
-        let data = try Array<UInt8>(unsafeUninitializedCapacity: base64String.count / 4 * 3) { buffer, initializedCount in
-            var dataCount: Int = 0
-
-            let result = base64String.withCString { cString in
-                sodium_base642bin(buffer.baseAddress!, underestimatedCount, cString, base64String.count, nil, &dataCount, nil, variant)
-            }
-
-            guard result >= 0 else {
-                throw Sodium.Error.unknown
-            }
-
-            initializedCount = dataCount
+        let buffer = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: underestimatedCount)
+        defer {
+            buffer.deallocate()
         }
 
-        self.init(data)
+        var dataCount: Int = 0
+
+        let result = base64String.withCString { cString in
+            sodium_base642bin(buffer.baseAddress!, underestimatedCount, cString, base64String.count, nil, &dataCount, nil, variant)
+        }
+
+        guard result >= 0 else {
+            throw Sodium.Error.unknown
+        }
+
+        self.init(buffer[0..<dataCount])
     }
 
     @inlinable
@@ -64,13 +65,23 @@ extension Sodium.Data {
         let base64EstimatedCount = sodium_base64_encoded_len(count, variant)
 
         var data: [UInt8] = Array(self)
-        let cString = Array<UInt8>(
-            unsafeUninitializedCapacity: base64EstimatedCount
-        ) { buffer, initializedCount in
-            sodium_bin2base64(buffer.baseAddress!, base64EstimatedCount, &data, data.count, variant)
-            initializedCount = base64EstimatedCount
-        }
 
-        return String(cString: cString)
+        if #available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *) {
+            return String(
+                unsafeUninitializedCapacity: base64EstimatedCount - 1
+            ) { buffer in
+                sodium_bin2base64(buffer.baseAddress!, base64EstimatedCount, &data, data.count, variant)
+                return base64EstimatedCount - 1
+            }
+        } else {
+            let buffer = UnsafeMutableBufferPointer<CChar>.allocate(capacity: base64EstimatedCount)
+            defer {
+                buffer.deallocate()
+            }
+
+            sodium_bin2base64(buffer.baseAddress!, base64EstimatedCount, &data, data.count, variant)
+
+            return String(cString: buffer.baseAddress!)
+        }
     }
 }
