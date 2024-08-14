@@ -13,6 +13,12 @@ extension Sodium {
     }
 }
 
+extension Sodium.Data {
+    public var size: Sodium.DataSize {
+        .init(byteCount: count)
+    }
+}
+
 extension Array: Sodium.Data where Element == UInt8 { }
 extension ArraySlice: Sodium.Data where Element == UInt8 { }
 extension ContiguousArray: Sodium.Data where Element == UInt8 { }

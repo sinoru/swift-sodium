@@ -12,10 +12,14 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         Cipher.secretBoxNonceSize
     }
 
-    public let key: Key
     let cipher = Cipher()
+    public let key: Sodium.SymmetricKey
 
-    public init(key: Key = .init()) throws {
+    public init(
+        key: Sodium.SymmetricKey = Sodium.SymmetricKey(
+            keyData: Cipher.secretBoxGenerateKey()
+        )
+    ) throws {
         try Sodium.initialize()
 
         self.key = key
