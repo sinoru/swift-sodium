@@ -18,7 +18,7 @@ import ucrt
 #endif
 
 extension Sodium {
-    public struct DataSize: Equatable, Hashable, Comparable, Sendable {
+    public struct DataSize: Equatable, Hashable, Sendable {
         private static var charBit: Int = Int(CHAR_BIT)
         public private(set) var rawValue: UInt16
 
@@ -39,6 +39,11 @@ extension Sodium {
         }
 
         public init(rawValue: RawValue) {
+            self.rawValue = rawValue
+        }
+
+        internal init?(rawValue: RawValue?) {
+            guard let rawValue else { return nil }
             self.rawValue = rawValue
         }
     }
@@ -62,13 +67,19 @@ extension Sodium.DataSize: RawRepresentable {
     public typealias RawValue = UInt16
 }
 
+extension Sodium.DataSize: Comparable {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        lhs.rawValue < rhs.rawValue
+    }
+}
+
 extension Sodium.DataSize: AdditiveArithmetic {
     public static func + (lhs: Sodium.DataSize, rhs: Sodium.DataSize) -> Sodium.DataSize {
-        .init(bitCount: lhs.rawValue + rhs.rawValue)
+        .init(rawValue: lhs.rawValue + rhs.rawValue)
     }
 
     public static func - (lhs: Sodium.DataSize, rhs: Sodium.DataSize) -> Sodium.DataSize {
-        .init(bitCount: lhs.rawValue - rhs.rawValue)
+        .init(rawValue: lhs.rawValue - rhs.rawValue)
     }
 }
 
@@ -94,8 +105,7 @@ extension Sodium.DataSize: Numeric {
     }
 
     public init?<T>(exactly source: T) where T : BinaryInteger {
-        guard let source = RawValue(exactly: source) else { return nil }
-        self.init(rawValue: source)
+        self.init(rawValue: RawValue(exactly: source))
     }
 }
 
@@ -147,8 +157,7 @@ extension Sodium.DataSize: BinaryInteger {
     }
     
     public init?<T>(exactly source: T) where T : BinaryFloatingPoint {
-        guard let source = RawValue(exactly: source) else { return nil }
-        self.init(rawValue: source)
+        self.init(rawValue: RawValue(exactly: source))
     }
     
     public init<T>(_ source: T) where T : BinaryFloatingPoint {
