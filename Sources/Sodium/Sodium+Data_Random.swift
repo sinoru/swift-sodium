@@ -9,14 +9,13 @@ import Clibsodium
 
 extension Sodium.Data {
     public static func random(count: Int) -> Self {
-        let data = Array<UInt8>(
-            unsafeUninitializedCapacity: count
-        ) { buffer, initializedCount in
+        withUnsafeTemporaryAllocation(of: UInt8.self, capacity: count) { buffer in
             randombytes_buf(
-                buffer.baseAddress!, count
+                buffer.baseAddress!,
+                count
             )
-        }
 
-        return self.init(data)
+            return self.init(buffer)
+        }
     }
 }
