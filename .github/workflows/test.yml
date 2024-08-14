@@ -32,6 +32,14 @@ jobs:
       - name: Package resolve
         run: swift package resolve
       - name: Build
+        if: ${{ !runner.debug }}
+        run: swift build
+      - name: Build (verbose)
+        if: ${{ runner.debug }}
         run: swift build -v
       - name: Run tests
+        if: ${{ !runner.debug }}
+        run: swift test
+      - name: Run tests (verbose)
+        if: ${{ runner.debug }}
         run: swift test -v
