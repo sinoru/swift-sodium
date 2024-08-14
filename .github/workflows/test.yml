@@ -33,14 +33,14 @@ jobs:
         run: swift package resolve
       - name: Build
         run: |
-          if [ ! -v RUNNER_DEBUG ]; then
+          if [[ ! -v RUNNER_DEBUG ]]; then
             swift build
           else
             swift build -v
           fi
       - name: Run tests
         run: |
-          if [ ! -v RUNNER_DEBUG ]; then
+          if [[ ! -v RUNNER_DEBUG ]]; then
             swift test
           else
             swift test -v
