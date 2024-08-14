@@ -33,14 +33,14 @@ jobs:
         run: swift package resolve
       - name: Build
         run: |
-          if [ "$RUNNER_DEBUG" -ne "1" ]; then
+          if [ "$RUNNER_DEBUG" != "1" ]; then
             swift build
           else
             swift build -v
           fi
       - name: Run tests
         run: |
-          if [ "$RUNNER_DEBUG" -ne "1" ]; then
+          if [ "$RUNNER_DEBUG" != "1" ]; then
             swift test
           else
             swift test -v
