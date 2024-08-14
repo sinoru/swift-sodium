@@ -6,9 +6,9 @@
 //
 
 public protocol SecretBoxCipher: Sodium.AEADCipher {
-    static var secretBoxKeySize: Int { get }
-    static var secretBoxNonceSize: Int { get }
-    static var secretBoxMACSize: Int { get }
+    static var secretBoxKeySize: Sodium.DataSize { get }
+    static var secretBoxNonceSize: Sodium.DataSize { get }
+    static var secretBoxMACSize: Sodium.DataSize { get }
 
     static func secretBoxGenerateKey() -> [UInt8]
     func secretBoxSeal(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]

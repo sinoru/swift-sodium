@@ -23,16 +23,9 @@ extension Sodium {
         public init(
             keySize: DataSize
         ) {
-            self.keyData = Array<UInt8>.init(
-                unsafeUninitializedCapacity: keySize.byteCount
-            ) { buffer, initializedCount in
-                randombytes_buf(
-                    buffer.baseAddress!,
-                    keySize.byteCount
-                )
-                crypto_secretbox_keygen(buffer.baseAddress!)
-                initializedCount = keySize.byteCount
-            }
+            self.keyData = Array<UInt8>.random(
+                count: keySize.byteCount
+            )
         }
     }
 }

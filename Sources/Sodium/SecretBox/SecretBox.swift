@@ -8,7 +8,11 @@
 import Clibsodium
 
 public struct SecretBox<Cipher: SecretBoxCipher> {
-    public var nonceSize: Int {
+    public var keySize: Sodium.DataSize {
+        Cipher.secretBoxKeySize
+    }
+
+    public var nonceSize: Sodium.DataSize {
         Cipher.secretBoxNonceSize
     }
 
@@ -29,7 +33,7 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     public func seal(
         _ data: some Sodium.Data
     ) throws -> (data: [UInt8], nonce: [UInt8]) {
-        let nonce = [UInt8].random(count: Cipher.secretBoxNonceSize)
+        let nonce = Array<UInt8>.random(count: Cipher.secretBoxNonceSize.byteCount)
         let encryptedData = try seal(data, nonce: nonce)
 
         return (

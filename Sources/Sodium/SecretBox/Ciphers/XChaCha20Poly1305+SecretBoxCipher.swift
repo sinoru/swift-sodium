@@ -8,29 +8,29 @@
 import Clibsodium
 
 extension XChaCha20Poly1305: SecretBoxCipher {
-    public static var secretBoxKeySize: Int {
-        Int(crypto_secretbox_xchacha20poly1305_KEYBYTES)
+    public static var secretBoxKeySize: Sodium.DataSize {
+        .init(byteCount: crypto_secretbox_xchacha20poly1305_KEYBYTES)
     }
 
-    public static var secretBoxNonceSize: Int {
-        Int(crypto_secretbox_xchacha20poly1305_NONCEBYTES)
+    public static var secretBoxNonceSize: Sodium.DataSize {
+        .init(byteCount: crypto_secretbox_xchacha20poly1305_NONCEBYTES)
     }
 
-    public static var secretBoxMACSize: Int {
-        Int(crypto_secretbox_xchacha20poly1305_MACBYTES)
+    public static var secretBoxMACSize: Sodium.DataSize {
+        .init(byteCount: crypto_secretbox_xchacha20poly1305_MACBYTES)
     }
 
     public static func secretBoxGenerateKey() -> [UInt8] {
         Array<UInt8>.init(
-            unsafeUninitializedCapacity: Self.secretBoxKeySize
+            unsafeUninitializedCapacity: Self.secretBoxKeySize.byteCount
         ) { buffer, initializedCount in
             crypto_secretbox_xsalsa20poly1305_keygen(buffer.baseAddress!)
-            initializedCount = Self.secretBoxKeySize
+            initializedCount = Self.secretBoxKeySize.byteCount
         }
     }
 
     public func secretBoxSeal(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
-        let estimatedCount = Self.secretBoxMACSize + data.count
+        let estimatedCount = Self.secretBoxMACSize.byteCount + data.count
 
         let encryptedData = try Array<UInt8>(
             unsafeUninitializedCapacity: estimatedCount
@@ -54,7 +54,7 @@ extension XChaCha20Poly1305: SecretBoxCipher {
     }
 
     public func secretBoxOpen(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
-        let estimatedCount = data.count - Self.secretBoxMACSize
+        let estimatedCount = data.count - Self.secretBoxMACSize.byteCount
 
         let decryptedData = try Array<UInt8>(
             unsafeUninitializedCapacity: estimatedCount

@@ -31,7 +31,7 @@ extension Sodium {
         }
 
         public init<I: BinaryInteger>(byteCount: I) {
-            self.init(rawValue: RawValue(byteCount) * 8)
+            self.init(rawValue: RawValue(byteCount) * RawValue(Self.charBit))
         }
 
         public init<I: BinaryInteger>(bitCount: I) {
