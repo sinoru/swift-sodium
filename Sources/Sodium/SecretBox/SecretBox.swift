@@ -13,6 +13,7 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     }
 
     public let key: Key
+    let cipher = Cipher()
 
     public init(key: Key = .init()) throws {
         try Sodium.initialize()
@@ -20,11 +21,11 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         self.key = key
     }
 
-    public func encrypt(
+    public func seal(
         _ data: some Sodium.Data
     ) throws -> (data: [UInt8], nonce: [UInt8]) {
         let nonce = [UInt8].random(count: Cipher.secretBoxNonceSize)
-        let encryptedData = try encrypt(data, nonce: nonce)
+        let encryptedData = try seal(data, nonce: nonce)
 
         return (
             data: encryptedData,
@@ -32,17 +33,17 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         )
     }
 
-    public func encrypt(
+    public func seal(
         _ data: some Sodium.Data,
         nonce: some Sodium.Data
     ) throws -> [UInt8] {
-        try Cipher.secretBoxEncrypt(.init(data), key: key.keyData, nonce: .init(nonce))
+        try cipher.secretBoxSeal(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 
-    public func decrypt(
+    public func open(
         _ data: some Sodium.Data,
         nonce: some Sodium.Data
     ) throws -> [UInt8] {
-        try Cipher.secretBoxDecrypt(.init(data), key: key.keyData, nonce: .init(nonce))
+        try cipher.secretBoxOpen(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 }

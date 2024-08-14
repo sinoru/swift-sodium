@@ -8,6 +8,7 @@
 extension Sodium {
     public protocol Cipher: Sendable {
 
+        init()
     }
 
     public protocol AEADCipher: Cipher {

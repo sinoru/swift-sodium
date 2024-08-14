@@ -18,17 +18,7 @@ extension SecretBox {
         }
 
         public init() {
-            let keyData = Array<UInt8>.init(
-                unsafeUninitializedCapacity: Cipher.secretBoxKeySize
-            ) { buffer, initializedCount in
-                randombytes_buf(
-                    buffer.baseAddress!,
-                    Cipher.secretBoxKeySize
-
-                )
-                initializedCount = Cipher.secretBoxKeySize
-            }
-            self.keyData = keyData
+            self.keyData = Cipher.secretBoxGenerateKey()
         }
     }
 }
