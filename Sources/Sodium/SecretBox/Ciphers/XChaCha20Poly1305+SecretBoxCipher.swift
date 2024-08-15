@@ -20,8 +20,8 @@ extension XChaCha20Poly1305: SecretBoxCipher {
         .init(byteCount: crypto_secretbox_xchacha20poly1305_MACBYTES)
     }
 
-    public static func secretBoxGenerateKey() -> [UInt8] {
-        Array<UInt8>.init(
+    public static func secretBoxGenerateKey() -> Sodium.Data {
+        Sodium.Data(
             unsafeUninitializedCapacity: Self.secretBoxKeySize.byteCount
         ) { buffer, initializedCount in
             crypto_secretbox_xsalsa20poly1305_keygen(buffer.baseAddress!)
@@ -29,10 +29,14 @@ extension XChaCha20Poly1305: SecretBoxCipher {
         }
     }
 
-    public func secretBoxSeal(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
+    public func secretBoxSeal(
+        _ data: Sodium.Data,
+        key: Sodium.Data,
+        nonce: Sodium.Data
+    ) throws -> Sodium.Data {
         let estimatedCount = Self.secretBoxMACSize.byteCount + data.count
 
-        return try Array<UInt8>(
+        return try Sodium.Data(
             unsafeUninitializedCapacity: estimatedCount
         ) { buffer, initializedCount in
             let result = crypto_secretbox_xchacha20poly1305_easy(
@@ -51,10 +55,14 @@ extension XChaCha20Poly1305: SecretBoxCipher {
         }
     }
 
-    public func secretBoxOpen(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8] {
+    public func secretBoxOpen(
+        _ data: Sodium.Data,
+        key: Sodium.Data,
+        nonce: Sodium.Data
+    ) throws -> Sodium.Data {
         let estimatedCount = data.count - Self.secretBoxMACSize.byteCount
 
-        return try Array<UInt8>(
+        return try Sodium.Data(
             unsafeUninitializedCapacity: estimatedCount
         ) { buffer, initializedCount in
             let result = crypto_secretbox_xchacha20poly1305_open_easy(

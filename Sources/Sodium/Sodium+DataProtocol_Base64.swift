@@ -1,5 +1,5 @@
 //
-//  Sodium+Data_Base64.swift
+//  Sodium+DataProtocol_Base64.swift
 //
 //
 //  Created by Jaehong Kang on 8/13/24.
@@ -7,7 +7,7 @@
 
 import Clibsodium
 
-extension Sodium.Data {
+extension Sodium.DataProtocol {
     @inlinable
     public init(
         base64Encoded base64String: String,
@@ -64,7 +64,7 @@ extension Sodium.Data {
 
         let base64EstimatedCount = sodium_base64_encoded_len(count, variant)
 
-        var data: [UInt8] = Array(self)
+        var data = Array(self)
 
         if #available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *) {
             return String(

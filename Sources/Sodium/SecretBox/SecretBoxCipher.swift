@@ -10,7 +10,17 @@ public protocol SecretBoxCipher: Sodium.AEADCipher {
     static var secretBoxNonceSize: Sodium.DataSize { get }
     static var secretBoxMACSize: Sodium.DataSize { get }
 
-    static func secretBoxGenerateKey() -> [UInt8]
-    func secretBoxSeal(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
-    func secretBoxOpen(_ data: [UInt8], key: [UInt8], nonce: [UInt8]) throws -> [UInt8]
+    static func secretBoxGenerateKey() -> Sodium.Data
+
+    func secretBoxSeal(
+        _ data: Sodium.Data,
+        key: Sodium.Data,
+        nonce: Sodium.Data
+    ) throws -> Sodium.Data
+
+    func secretBoxOpen(
+        _ data: Sodium.Data,
+        key: Sodium.Data,
+        nonce: Sodium.Data
+    ) throws -> Sodium.Data
 }

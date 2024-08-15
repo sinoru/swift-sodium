@@ -1,5 +1,5 @@
 //
-//  Sodium+Data_Random.swift
+//  Sodium+DataProtocol_Random.swift
 //
 //
 //  Created by Jaehong Kang on 8/13/24.
@@ -7,7 +7,7 @@
 
 import Clibsodium
 
-extension Sodium.Data {
+extension Sodium.DataProtocol {
     public static func random(count: Int) -> Self {
         withUnsafeTemporaryAllocation(of: UInt8.self, capacity: count) { buffer in
             randombytes_buf(

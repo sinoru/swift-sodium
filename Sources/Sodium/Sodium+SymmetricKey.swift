@@ -9,7 +9,7 @@ import Clibsodium
 
 extension Sodium {
     public struct SymmetricKey {
-        public let keyData: [UInt8]
+        public let keyData: Data
         public var keySize: DataSize {
             keyData.size
         }
@@ -23,7 +23,7 @@ extension Sodium {
         public init(
             keySize: DataSize
         ) {
-            self.keyData = Array<UInt8>.random(
+            self.keyData = Data.random(
                 count: keySize.byteCount
             )
         }
@@ -33,11 +33,11 @@ extension Sodium {
 extension Sodium.SymmetricKey: RawRepresentable {
     public typealias RawValue = Sodium.Data
 
-    public var rawValue: any RawValue {
+    public var rawValue: RawValue {
         keyData
     }
 
-    public init?(rawValue: any RawValue) {
+    public init?(rawValue: RawValue) {
         self.init(keyData: .init(rawValue))
     }
 }

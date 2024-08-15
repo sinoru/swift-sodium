@@ -6,19 +6,5 @@
 //
 
 extension Sodium {
-    public protocol Data: Collection, Equatable, Hashable, Sendable where Element == UInt8 {
-        associatedtype Element
-
-        init<S: Sequence>(_ elements: S) where S.Element == Element
-    }
+    public typealias Data = Array<UInt8>
 }
-
-extension Sodium.Data {
-    public var size: Sodium.DataSize {
-        .init(byteCount: count)
-    }
-}
-
-extension Array: Sodium.Data where Element == UInt8 { }
-extension ArraySlice: Sodium.Data where Element == UInt8 { }
-extension ContiguousArray: Sodium.Data where Element == UInt8 { }

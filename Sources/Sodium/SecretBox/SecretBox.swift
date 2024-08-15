@@ -31,9 +31,9 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     }
 
     public func seal(
-        _ data: some Sodium.Data
-    ) throws -> (data: [UInt8], nonce: [UInt8]) {
-        let nonce = Array<UInt8>.random(count: Cipher.secretBoxNonceSize.byteCount)
+        _ data: some Sodium.DataProtocol
+    ) throws -> (data: Sodium.Data, nonce: Sodium.Data) {
+        let nonce = Sodium.Data.random(count: Cipher.secretBoxNonceSize.byteCount)
         let encryptedData = try seal(data, nonce: nonce)
 
         return (
@@ -43,16 +43,16 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     }
 
     public func seal(
-        _ data: some Sodium.Data,
-        nonce: some Sodium.Data
-    ) throws -> [UInt8] {
+        _ data: some Sodium.DataProtocol,
+        nonce: some Sodium.DataProtocol
+    ) throws -> Sodium.Data {
         try cipher.secretBoxSeal(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 
     public func open(
-        _ data: some Sodium.Data,
-        nonce: some Sodium.Data
-    ) throws -> [UInt8] {
+        _ data: some Sodium.DataProtocol,
+        nonce: some Sodium.DataProtocol
+    ) throws -> Sodium.Data {
         try cipher.secretBoxOpen(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 }

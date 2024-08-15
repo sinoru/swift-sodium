@@ -1,5 +1,5 @@
 //
-//  Sodium+Data.swift
+//  Data+Sodium.swift
 //
 //
 //  Created by Jaehong Kang on 8/13/24.
@@ -7,4 +7,4 @@
 
 import Foundation
 
-extension Data: Sodium.Data { }
+extension Data: Sodium.DataProtocol { }
