@@ -44,9 +44,9 @@ let encryptionSecretStream = try SecretStream<XChaCha20Poly1305>()
 // If you want, you can supply it manually on init.
 encryptionSecretStream.key
 
-let messagePart1 = Array("Arbitrary data to encrypt".utf8)
-let messagePart2 = Array("split into".utf8)
-let messagePart3 = Array("three messages".utf8)
+let messagePart1: Array<UInt8> = .init("Arbitrary data to encrypt".utf8)
+let messagePart2: Array<UInt8> = .init("split into".utf8)
+let messagePart3: Array<UInt8> = .init("three messages".utf8)
 
 var encryptionSecretStream = try SecretStream<XChaCha20Poly1305>()
 let cipherTextPart1 = try encryptionSecretStream.push(messagePart1)
