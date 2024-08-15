@@ -1,9 +1,13 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.8
 
 import PackageDescription
 
 var applePlatforms: [Platform] {
+    #if swift(>=5.9)
     [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .visionOS]
+    #else
+    [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS]
+    #endif
 }
 let posixPlatforms = applePlatforms + [.linux]
 
