@@ -75,6 +75,7 @@ let package = Package(
             dependencies: [
                 "SodiumCore",
                 "SodiumSecretBox",
+                "SodiumSecretStream",
             ]),
         .target(
             name: "SodiumFoundationCompat",
