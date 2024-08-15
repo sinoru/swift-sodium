@@ -7,3 +7,4 @@
 
 @_exported import SodiumCore
 @_exported import SodiumSecretBox
+@_exported import SodiumSecretStream
