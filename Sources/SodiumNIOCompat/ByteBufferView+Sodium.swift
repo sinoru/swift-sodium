@@ -5,9 +5,10 @@
 //  Created by Jaehong Kang on 8/13/24.
 //
 
-import Sodium
-import NIOCore
+import struct NIOCore.ByteBufferView
 
-extension ByteBufferView: Sodium.DataProtocol {
-
-}
+#if compiler(>=6)
+extension ByteBufferView: @retroactive Sodium.DataProtocol { }
+#else
+extension ByteBufferView: Sodium.DataProtocol { }
+#endif
