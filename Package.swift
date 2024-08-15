@@ -45,7 +45,7 @@ let platformSpecificLibSodiumDefines: [CSetting] = [
     .define("HAVE_SYSCONF", to: "1", .when(platforms: posixPlatforms)),
     .define("HAVE_SYS_AUXV_H", to: "1", .when(platforms: [.linux, .wasi])),
     .define("HAVE_SYS_MMAN_H", to: "1", .when(platforms: posixPlatforms)),
-    .define("HAVE_SYS_PARAM_H", to: "1", .when(platforms: posixPlatforms + [.windows, .wasi])),
+    .define("HAVE_SYS_PARAM_H", to: "1", .when(platforms: posixPlatforms + [.wasi])),
     .define("HAVE_SYS_RANDOM_H", to: "1", .when(platforms: posixPlatforms + [.wasi])),
     .define("HAVE_WEAK_SYMBOLS", to: "1", .when(platforms: posixPlatforms)),
 ]
