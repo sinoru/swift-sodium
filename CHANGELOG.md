@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support for Swift 5.8
+
+### Fixed
+
+- Fix a build warning on Swift 6
+
 ## [0.0.2] - 2024-08-15
 
 ### Changed
