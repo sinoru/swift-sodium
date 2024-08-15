@@ -22,7 +22,11 @@ The package currently provides the following implementations:
 ```swift
 import SodiumSecretBox
 
-let secretBox = try SecretBox<XSalsa20Poly1305>() // This will generate key for you. Or you can create it.
+let secretBox = try SecretBox<XSalsa20Poly1305>()
+
+// This is generated key for you.
+// If you want, you can supply it manually on init.
+secretBox.key 
 
 let originalData: Array<UInt8> = .init("text".utf8)
 let encryptedData = try secretBox.seal(Array("text".utf8))
@@ -34,7 +38,11 @@ let decryptedData = try secretBox.open(encryptedData.data, nonce: encryptedData.
 ```swift
 import SodiumSecretStream
 
-let encryptionSecretStream = try SecretStream<XChaCha20Poly1305>() // This will generate key for you. Or you can create it.
+let encryptionSecretStream = try SecretStream<XChaCha20Poly1305>()
+
+// This is generated key for you.
+// If you want, you can supply it manually on init.
+encryptionSecretStream.key
 
 let messagePart1 = Array("Arbitrary data to encrypt".utf8)
 let messagePart2 = Array("split into".utf8)
