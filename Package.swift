@@ -1,8 +1,14 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 5.6
 
 import PackageDescription
 
-let applePlatforms: [Platform] = [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .visionOS, .driverKit]
+var applePlatforms: [Platform] {
+    #if swift(>=5.9)
+    [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .visionOS, .driverKit]
+    #else
+    [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .driverKit]
+    #endif
+}
 let posixPlatforms = applePlatforms + [.linux]
 
 let commonLibSodiumDefines: [CSetting] = [

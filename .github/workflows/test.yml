@@ -22,14 +22,14 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: ['macos-13', 'macos-14', 'ubuntu-20.04', 'ubuntu-22.04', 'ubuntu-24.04']
-        swift-version: ['5.10.1']
+        swift-version: ['5.6.3', '5.7.3', '5.8.1', '5.9.2', '5.10.1']
         experimental: [null]
         include:
           - operating-system: 'windows-2019'
-            swift-version: '5.10.1'
+            swift-version: '5.6.3'
             experimental: 'experimental'
           - operating-system: 'windows-2022'
-            swift-version: '5.10.1'
+            swift-version: '5.6.3'
             experimental: 'experimental'
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: ${{ matrix.experimental == 'experimental' }}
