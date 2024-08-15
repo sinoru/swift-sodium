@@ -20,18 +20,21 @@ jobs:
   swift-test:
     strategy:
       matrix:
-        operating-system: ['macos-12', 'macos-13', 'macos-14', 'ubuntu-20.04', 'ubuntu-22.04']
-        swift-version: ['5.9.2', '5.10.1']
+        operating-system: ['macos-12', 'macos-13', 'macos-14', 'ubuntu-20.04', 'ubuntu-22.04', 'ubuntu-24.04']
+        swift-version: ['5.8.1', '5.9.2', '5.10.1']
         experimental: [null]
-        include:
+        # include:
+        #   - operating-system: 'windows-2019'
+        #     swift-version: '5.6.3'
+        #     experimental: 'experimental'
+        #   - operating-system: 'windows-2022'
+        #     swift-version: '5.6.3'
+        #     experimental: 'experimental'
+        exclude:
           - operating-system: 'ubuntu-24.04'
-            swift-version: '5.10.1'
-          # - operating-system: 'windows-2019'
-          #   swift-version: '5.6.3'
-          #   experimental: 'experimental'
-          # - operating-system: 'windows-2022'
-          #   swift-version: '5.6.3'
-          #   experimental: 'experimental'
+            swift-version: '5.8.1'
+          - operating-system: 'ubuntu-24.04'
+            swift-version: '5.9.2'
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: ${{ matrix.experimental == 'experimental' }}
     steps:
