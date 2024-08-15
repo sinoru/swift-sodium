@@ -163,13 +163,13 @@ extension XChaCha20Poly1305.Tag: RawRepresentable {
     public var rawValue: UInt8 {
         switch self {
         case .message:
-            return UInt8(crypto_secretstream_xchacha20poly1305_TAG_MESSAGE)
+            UInt8(crypto_secretstream_xchacha20poly1305_TAG_MESSAGE)
         case .final:
-            return UInt8(crypto_secretstream_xchacha20poly1305_TAG_FINAL)
+            UInt8(crypto_secretstream_xchacha20poly1305_TAG_FINAL)
         case .push:
-            return UInt8(crypto_secretstream_xchacha20poly1305_TAG_PUSH)
+            UInt8(crypto_secretstream_xchacha20poly1305_TAG_PUSH)
         case .rekey:
-            return UInt8(crypto_secretstream_xchacha20poly1305_TAG_REKEY)
+            UInt8(crypto_secretstream_xchacha20poly1305_TAG_REKEY)
         }
     }
 }

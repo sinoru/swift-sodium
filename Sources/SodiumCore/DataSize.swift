@@ -42,7 +42,7 @@ public struct DataSize: Equatable, Hashable, Sendable {
     }
 
     internal init?(rawValue: RawValue?) {
-        guard let rawValue = rawValue else { return nil }
+        guard let rawValue else { return nil }
         self.rawValue = rawValue
     }
 }
