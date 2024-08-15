@@ -19,8 +19,8 @@ public struct SymmetricKey {
 
     public init(
         keySize: DataSize
-    ) {
-        self.keyData = Sodium.Data.random(
+    ) throws {
+        self.keyData = try Sodium.Data.random(
             count: keySize.byteCount
         )
     }

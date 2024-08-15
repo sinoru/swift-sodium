@@ -8,8 +8,10 @@
 import Clibsodium
 
 extension Sodium.DataProtocol {
-    public static func random(count: Int) -> Self {
-        withUnsafeTemporaryAllocation(of: UInt8.self, capacity: count) { buffer in
+    public static func random(count: Int) throws -> Self {
+        try Sodium.initialize()
+
+        return withUnsafeTemporaryAllocation(of: UInt8.self, capacity: count) { buffer in
             randombytes_buf(
                 buffer.baseAddress!,
                 count
