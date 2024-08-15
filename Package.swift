@@ -3,7 +3,7 @@
 import PackageDescription
 
 var applePlatforms: [Platform] {
-    [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .visionOS, .driverKit]
+    [.macOS, .macCatalyst, .iOS, .watchOS, .tvOS, .visionOS]
 }
 let posixPlatforms = applePlatforms + [.linux]
 
@@ -46,7 +46,7 @@ let platformSpecificLibSodiumDefines: [CSetting] = [
     .define("HAVE_SYS_AUXV_H", to: "1", .when(platforms: [.linux, .wasi])),
     .define("HAVE_SYS_MMAN_H", to: "1", .when(platforms: posixPlatforms)),
     .define("HAVE_SYS_PARAM_H", to: "1", .when(platforms: posixPlatforms + [.wasi])),
-    .define("HAVE_SYS_RANDOM_H", to: "1", .when(platforms: posixPlatforms + [.wasi])),
+    .define("HAVE_SYS_RANDOM_H", to: "1", .when(platforms: [.macOS, .macCatalyst, .linux, .wasi])),
     .define("HAVE_WEAK_SYMBOLS", to: "1", .when(platforms: posixPlatforms)),
 ]
 
