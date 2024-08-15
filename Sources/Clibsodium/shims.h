@@ -33,7 +33,6 @@
 #if !(defined(_WIN32) || defined(WIN32))
 #define HAVE_AMD64_ASM 1
 #define HAVE_AVX_ASM 1
-#define HAVE_RDRAND 1
 #endif
 
 #define HAVE_CPUID 1
@@ -46,6 +45,7 @@
 #define HAVE_AVX2INTRIN_H 1
 #define HAVE_AVX512FINTRIN_H 1
 #define HAVE_WMMINTRIN_H 1
+#define HAVE_RDRAND 1
 
 #elif defined(__aarch64__) || defined(_M_ARM64)
 
