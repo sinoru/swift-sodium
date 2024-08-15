@@ -23,7 +23,7 @@ jobs:
       matrix:
         operating-system: ['macos-13', 'macos-14', 'ubuntu-20.04', 'ubuntu-22.04', 'ubuntu-24.04']
         swift-version: ['5.10.1']
-        experimental: ''
+        experimental: [null]
         include:
           - operating-system: 'windows-2019'
             swift-version: '5.10.1'
