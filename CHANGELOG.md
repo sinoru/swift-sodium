@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2024-08-15
+
 ### Changed
 
 - Make minor changes for data race safety
@@ -19,5 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial Release
 
-[unreleased]: https://github.com/sinoru/swift-sodium/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/sinoru/swift-sodium/compare/v0.0.2...develop
+[0.0.2]: https://github.com/sinoru/swift-sodium/releases/tag/v0.0.2
 [0.0.1]: https://github.com/sinoru/swift-sodium/releases/tag/v0.0.1
