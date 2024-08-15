@@ -1,5 +1,8 @@
 # Swift Sodium
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsinoru%2Fswift-sodium%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/sinoru/swift-sodium)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fsinoru%2Fswift-sodium%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/sinoru/swift-sodium)
+
 **Swift Sodium** is an open-source package of [libsodium][libsodium] implementations for the Swift programming language.
 
 [libsodium]: https://libsodium.org
