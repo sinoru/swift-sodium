@@ -10,7 +10,7 @@ import XCTest
 
 final class SecretBoxTests: XCTestCase {
     func testXSalsa20Poly1305EncryptAndDecrypt() throws {
-        let secretBox = try SecretBox<XSalsa20Poly1305>()
+        let secretBox = try SecretBox<SecretBoxXSalsa20Poly1305>()
         let originalData = Array("text".utf8)
         let encryptedData = try secretBox.seal(Array("text".utf8))
         let decryptedData = try secretBox.open(encryptedData.data, nonce: encryptedData.nonce)
@@ -19,7 +19,7 @@ final class SecretBoxTests: XCTestCase {
     }
 
     func testXChaCha20Poly1305EncryptAndDecrypt() throws {
-        let secretBox = try SecretBox<XChaCha20Poly1305>()
+        let secretBox = try SecretBox<SecretBoxXChaCha20Poly1305>()
         let originalData = Array("text".utf8)
         let encryptedData = try secretBox.seal(Array("text".utf8))
         let decryptedData = try secretBox.open(encryptedData.data, nonce: encryptedData.nonce)

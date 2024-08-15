@@ -12,7 +12,7 @@ extension Sodium {
 }
 
 extension Sodium.DataProtocol {
-    public var size: Sodium.DataSize {
+    public var size: DataSize {
         .init(byteCount: count)
     }
 }

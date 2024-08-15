@@ -7,20 +7,22 @@
 
 import Clibsodium
 
-public protocol SecretBoxCipher: Sodium.AEADCipher {
-    static var secretBoxKeySize: Sodium.DataSize { get }
-    static var secretBoxNonceSize: Sodium.DataSize { get }
-    static var secretBoxMACSize: Sodium.DataSize { get }
+public protocol SecretBoxCipher: AEADCipher {
+    static var keySize: DataSize { get }
+    static var nonceSize: DataSize { get }
+    static var macSize: DataSize { get }
 
-    static func secretBoxGenerateKey() -> Sodium.Data
+    static func generateKey() -> Sodium.Data
 
-    func secretBoxSeal(
+    init()
+
+    func seal(
         _ data: Sodium.Data,
         key: Sodium.Data,
         nonce: Sodium.Data
     ) throws -> Sodium.Data
 
-    func secretBoxOpen(
+    func open(
         _ data: Sodium.Data,
         key: Sodium.Data,
         nonce: Sodium.Data

@@ -8,21 +8,21 @@
 import Clibsodium
 
 public struct SecretBox<Cipher: SecretBoxCipher> {
-    public var keySize: Sodium.DataSize {
-        Cipher.secretBoxKeySize
+    public var keySize: DataSize {
+        Cipher.keySize
     }
 
-    public var nonceSize: Sodium.DataSize {
-        Cipher.secretBoxNonceSize
+    public var nonceSize: DataSize {
+        Cipher.nonceSize
     }
 
-    public let key: Sodium.SymmetricKey
+    public let key: SymmetricKey
 
-    var cipher = Cipher()
+    let cipher = Cipher()
 
     public init(
-        key: Sodium.SymmetricKey = Sodium.SymmetricKey(
-            keyData: Cipher.secretBoxGenerateKey()
+        key: SymmetricKey = SymmetricKey(
+            keyData: Cipher.generateKey()
         )
     ) throws {
         try Sodium.initialize()
@@ -33,7 +33,7 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     public func seal(
         _ data: some Sodium.DataProtocol
     ) throws -> (data: Sodium.Data, nonce: Sodium.Data) {
-        let nonce = Sodium.Data.random(count: Cipher.secretBoxNonceSize.byteCount)
+        let nonce = Sodium.Data.random(count: Cipher.nonceSize.byteCount)
         let encryptedData = try seal(data, nonce: nonce)
 
         return (
@@ -46,13 +46,13 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
         _ data: some Sodium.DataProtocol,
         nonce: some Sodium.DataProtocol
     ) throws -> Sodium.Data {
-        try cipher.secretBoxSeal(.init(data), key: key.keyData, nonce: .init(nonce))
+        try cipher.seal(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 
     public func open(
         _ data: some Sodium.DataProtocol,
         nonce: some Sodium.DataProtocol
     ) throws -> Sodium.Data {
-        try cipher.secretBoxOpen(.init(data), key: key.keyData, nonce: .init(nonce))
+        try cipher.open(.init(data), key: key.keyData, nonce: .init(nonce))
     }
 }
