@@ -47,6 +47,10 @@
 #define HAVE_WMMINTRIN_H 1
 #define HAVE_RDRAND 1
 
+#if defined(_WIN32) || defined(WIN32)
+#include <immintrin.h> // Windows's clang doesn't seem to work attribute
+#endif
+
 #elif defined(__aarch64__) || defined(_M_ARM64)
 
 #define HAVE_ARMCRYPTO 1
