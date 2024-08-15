@@ -10,27 +10,20 @@
 
 // Endian
 
-#ifdef __APPLE__
-#include <machine/endian.h>
+#if !(defined(_WIN32) || defined(WIN32))
 
-#if BYTE_ORDER == BIG_ENDIAN
+#if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 #define NATIVE_BIG_ENDIAN 1
-#elif BYTE_ORDER == LITTLE_ENDIAN
+#elif __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 #define NATIVE_LITTLE_ENDIAN 1
 #else
 #error Unknown Byte Order.
 #endif
 
 #else
-#include <endian.h>
 
-#if __BYTE_ORDER == __BIG_ENDIAN
-#define NATIVE_BIG_ENDIAN 1
-#elif __BYTE_ORDER == __LITTLE_ENDIAN
 #define NATIVE_LITTLE_ENDIAN 1
-#else
-#error Unknown Byte Order.
-#endif
+
 #endif
 
 // Arch specific features
