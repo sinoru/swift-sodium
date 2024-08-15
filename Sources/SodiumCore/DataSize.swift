@@ -18,7 +18,7 @@ import ucrt
 #endif
 
 public struct DataSize: Equatable, Hashable, Sendable {
-    private static var charBit: Int = Int(CHAR_BIT)
+    private static let charBit: Int = Int(CHAR_BIT)
     public private(set) var rawValue: UInt16
 
     public var bitCount: Int {
