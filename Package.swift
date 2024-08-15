@@ -101,11 +101,19 @@ let package = Package(
             dependencies: [
                 "SodiumCore",
             ]),
+        .target(
+            name: "SodiumSecretStream",
+            dependencies: [
+                "SodiumCore",
+            ]),
         .testTarget(
             name: "SodiumCoreTests",
             dependencies: ["SodiumCore"]),
         .testTarget(
             name: "SodiumSecretBoxTests",
             dependencies: ["SodiumSecretBox"]),
+        .testTarget(
+            name: "SodiumSecretStreamTests",
+            dependencies: ["SodiumSecretStream"]),
     ]
 )
