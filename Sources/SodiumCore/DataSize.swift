@@ -5,20 +5,20 @@
 //  Created by Jaehong Kang on 8/14/24.
 //
 
-#if os(macOS) || os(iOS)
+#if canImport(Darwin)
 import Darwin
 #elseif canImport(Glibc)
 import Glibc
 #elseif canImport(Musl)
 import Musl
-#elseif os(Windows)
+#elseif canImport(ucrt)
 import ucrt
 #else
 #error("Unknown platform")
 #endif
 
 public struct DataSize: Equatable, Hashable, Sendable {
-    private static var charBit: Int = Int(CHAR_BIT)
+    private static let charBit: Int = Int(CHAR_BIT)
     public private(set) var rawValue: UInt16
 
     public var bitCount: Int {
