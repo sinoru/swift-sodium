@@ -12,7 +12,7 @@ extension Sodium {
     }
 }
 #else
-public protocol SodiumDataProtocol: RandomAccessCollection, Sendable where Element == UInt8, Self.SubSequence: DataProtocol {
+public protocol SodiumDataProtocol: RandomAccessCollection, Sendable where Element == UInt8, Self.SubSequence: SodiumDataProtocol {
     init<S: Sequence>(_ elements: S) where S.Element == Element
 }
 
