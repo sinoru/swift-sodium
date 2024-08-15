@@ -33,7 +33,7 @@ public struct SecretBox<Cipher: SecretBoxCipher> {
     public func seal(
         _ data: some Sodium.DataProtocol
     ) throws -> (data: Sodium.Data, nonce: Sodium.Data) {
-        let nonce = Sodium.Data.random(count: Cipher.nonceSize.byteCount)
+        let nonce = try Sodium.Data.random(count: Cipher.nonceSize.byteCount)
         let encryptedData = try seal(data, nonce: nonce)
 
         return (
