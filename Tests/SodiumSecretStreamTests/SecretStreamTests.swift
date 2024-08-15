@@ -14,7 +14,6 @@ final class SecretStreamTests: XCTestCase {
         let messagePart2 = Array("split into".utf8)
         let messagePart3 = Array("three messages".utf8)
 
-
         var encryptionSecretStream = try SecretStream<XChaCha20Poly1305>()
         let cipherTextPart1 = try encryptionSecretStream.push(messagePart1)
         let cipherTextPart2 = try encryptionSecretStream.push(messagePart2)
@@ -28,9 +27,11 @@ final class SecretStreamTests: XCTestCase {
         let decryptedMessagePart1 = try decryptionSecretStream.pull(cipherTextPart1)
         XCTAssertEqual(decryptedMessagePart1.tag, .message)
         XCTAssertEqual(decryptedMessagePart1.message, messagePart1)
+
         let decryptedMessagePart2 = try decryptionSecretStream.pull(cipherTextPart2)
         XCTAssertEqual(decryptedMessagePart2.tag, .message)
         XCTAssertEqual(decryptedMessagePart2.message, messagePart2)
+
         let decryptedMessagePart3 = try decryptionSecretStream.pull(cipherTextPart3)
         XCTAssertEqual(decryptedMessagePart3.tag, .final)
         XCTAssertEqual(decryptedMessagePart3.message, messagePart3)
