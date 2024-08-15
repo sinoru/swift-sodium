@@ -18,14 +18,14 @@ extension Sodium {
 }
 
 extension Sodium.Cipher {
-    internal func value<T>(for type: T.Type) -> T {
+    package func value<T>(for type: T.Type) -> T {
         guard let value = _storage[ObjectIdentifier(type)] as? T else {
             fatalError("Can't access value!")
         }
         return value
     }
 
-    internal mutating func setValue<T>(_ value: T, for type: T.Type = T.self) {
+    package mutating func setValue<T>(_ value: T, for type: T.Type = T.self) {
         _storage[ObjectIdentifier(type)] = value
     }
 }

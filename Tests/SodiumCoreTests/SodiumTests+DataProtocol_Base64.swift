@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Sodium
+@testable import SodiumCore
 
 extension SodiumTests {
     func testBase64ToBinary() throws {

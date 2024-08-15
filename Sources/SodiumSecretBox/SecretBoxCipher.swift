@@ -5,6 +5,8 @@
 //  Created by Jaehong Kang on 8/13/24.
 //
 
+import Clibsodium
+
 public protocol SecretBoxCipher: Sodium.AEADCipher {
     static var secretBoxKeySize: Sodium.DataSize { get }
     static var secretBoxNonceSize: Sodium.DataSize { get }

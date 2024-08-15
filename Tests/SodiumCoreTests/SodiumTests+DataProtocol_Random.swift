@@ -1,12 +1,12 @@
 //
-//  SodiumTests+Data_Random.swift
+//  SodiumTests+DataProtocol_Random.swift
 //
 //
 //  Created by Jaehong Kang on 8/14/24.
 //
 
 import XCTest
-@testable import Sodium
+@testable import SodiumCore
 
 extension SodiumTests {
     func testRandom() throws {

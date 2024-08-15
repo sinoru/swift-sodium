@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Sodium
+@testable import SodiumSecretBox
 
 final class SecretBoxTests: XCTestCase {
     func testXSalsa20Poly1305EncryptAndDecrypt() throws {

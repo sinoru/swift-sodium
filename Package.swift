@@ -71,7 +71,8 @@ let package = Package(
         .target(
             name: "Sodium",
             dependencies: [
-                "Clibsodium",
+                "SodiumCore",
+                "SodiumSecretBox",
             ]),
         .target(
             name: "SodiumFoundationCompat",
@@ -90,8 +91,21 @@ let package = Package(
                 .headerSearchPath("."),
                 .headerSearchPath("include/sodium"),
             ] + commonLibSodiumDefines + platformSpecificLibSodiumDefines),
+        .target(
+            name: "SodiumCore",
+            dependencies: [
+                "Clibsodium",
+            ]),
+        .target(
+            name: "SodiumSecretBox",
+            dependencies: [
+                "SodiumCore",
+            ]),
         .testTarget(
-            name: "SodiumTests",
-            dependencies: ["Sodium"]),
+            name: "SodiumCoreTests",
+            dependencies: ["SodiumCore"]),
+        .testTarget(
+            name: "SodiumSecretBoxTests",
+            dependencies: ["SodiumSecretBox"]),
     ]
 )

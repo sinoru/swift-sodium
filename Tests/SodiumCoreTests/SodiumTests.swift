@@ -1,5 +1,5 @@
 import XCTest
-@testable import Sodium
+@testable import SodiumCore
 
 final class SodiumTests: XCTestCase {
     func testInitialize() throws {
