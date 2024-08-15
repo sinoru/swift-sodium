@@ -23,14 +23,16 @@ jobs:
       matrix:
         operating-system: ["macos-13", "macos-14", "ubuntu-20.04", "ubuntu-22.04", "ubuntu-24.04"]
         swift-version: ["5.10.1"]
-        experimental: [false]
+        experimental: null
         include:
-          - operating-system: windows-2019
-            experimental: true
-          - operating-system: windows-2022
-            experimental: true
+          - operating-system: "windows-2019"
+            swift-version: "5.10.1"
+            experimental: "experimental"
+          - operating-system: "windows-2022"
+            swift-version: "5.10.1"
+            experimental: "experimental"
     runs-on: ${{ matrix.operating-system }}
-    continue-on-error: ${{ matrix.experimental }}
+    continue-on-error: ${{ matrix.experimental == "experimental" }}
     steps:
       - uses: actions/checkout@v4
       - uses: swift-actions/setup-swift@v2
